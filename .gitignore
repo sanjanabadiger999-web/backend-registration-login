@@ -1,0 +1,23 @@
+# ---- Backend (Maven) ----
+target/
+
+# ---- Frontend (Vite) ----
+node_modules/
+dist/
+
+# ---- Environment files - NEVER commit real secrets ----
+.env
+.env.local
+.env.production
+.env.*.local
+!.env.example
+
+# ---- IDE / OS ----
+.idea/
+.vscode/
+*.iml
+.DS_Store
+*.log
+
+# Render blueprint may contain placeholder values only
+# (do not put real DB passwords or JWT secrets in this file).

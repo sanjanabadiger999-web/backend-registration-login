@@ -1,0 +1,25 @@
+# Render Blueprint for the USER service (registration).
+# Service URL after deploy: https://reglogin-user-service.onrender.com
+# Endpoint: POST /api/reg   Health check: GET /health
+#
+# NOTE: Render only auto-detects a blueprint at the repository ROOT.
+# If you keep this file in a subfolder, create the service from the Render
+# dashboard instead (New -> Web Service -> repo -> Root Directory = UserService)
+# and apply the env vars listed below.
+
+services:
+  - type: web
+    name: reglogin-user-service
+    runtime: docker
+    plan: free
+    rootDir: .
+    healthCheckPath: /health
+    envVars:
+      - key: DB_URL
+        value: jdbc:mysql://your-mysql-host:3306/reglogin?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - key: DB_USERNAME
+        value: reglogin
+      - key: DB_PASSWORD
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://reglogin-frontend.vercel.app,http://localhost:5173,http://localhost:3000
