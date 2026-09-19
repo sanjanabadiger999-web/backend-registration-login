@@ -25,6 +25,10 @@ Architecture:
 Two backend services are deployed separately on Render (one per service, each with its own
 `render.yaml`). The Vite frontend talks to both through REST.
 
+The shared production database is **Aiven MySQL** (see `docs/AIVEN.md` for creating the
+service and connection values). Both backend services read `DB_URL` / `DB_USERNAME` /
+`DB_PASSWORD` from the environment.
+
 ## Local development
 
 Backends (run each in its own terminal, H2 demo profile so no MySQL needed):

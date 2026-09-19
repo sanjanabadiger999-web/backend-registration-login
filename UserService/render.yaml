@@ -16,9 +16,9 @@ services:
     healthCheckPath: /health
     envVars:
       - key: DB_URL
-        value: jdbc:mysql://your-mysql-host:3306/reglogin?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+        value: jdbc:mysql://<HOST>:<PORT>/<DBNAME>?ssl-mode=REQUIRED&serverTimezone=UTC&allowPublicKeyRetrieval=true
       - key: DB_USERNAME
-        value: reglogin
+        value: avnadmin
       - key: DB_PASSWORD
         sync: false
       - key: CORS_ALLOWED_ORIGINS
