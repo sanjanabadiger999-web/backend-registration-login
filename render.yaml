@@ -1,0 +1,30 @@
+# Render Blueprint for the reglogin backend (repository root).
+# Service URL after deploy: https://reglogin-user-service.onrender.com
+# Endpoints: POST /api/reg, POST /api/login, GET /api/me, POST /api/logout
+# Health check: GET /health
+#
+# Required env vars to set in the Render dashboard (sync: false =>
+# not stored in this repo): DB_URL, DB_PASSWORD, JWT_SECRET, FRONTEND_URL.
+# DB_USERNAME has a default of avnadmin (Aiven standard).
+#
+# The backend code lives in UserService/; the Dockerfile builds it from there.
+services:
+  - type: web
+    name: reglogin-user-service
+    runtime: docker
+    plan: free
+    rootDir: .
+    healthCheckPath: /health
+    envVars:
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        value: avnadmin
+      - key: DB_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
