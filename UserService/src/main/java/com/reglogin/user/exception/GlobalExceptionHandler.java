@@ -1,5 +1,7 @@
 package com.reglogin.user.exception;
 
+import com.reglogin.auth.exception.InvalidCredentialsException;
+import com.reglogin.auth.exception.TokenValidationException;
 import com.reglogin.user.dto.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -31,6 +33,18 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleUnreadable(HttpMessageNotReadableException ex,
                                                           HttpServletRequest request) {
         return build(HttpStatus.BAD_REQUEST, "Malformed or missing request body", request);
+    }
+
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidCredentials(InvalidCredentialsException ex,
+                                                                  HttpServletRequest request) {
+        return build(HttpStatus.UNAUTHORIZED, ex.getMessage(), request);
+    }
+
+    @ExceptionHandler(TokenValidationException.class)
+    public ResponseEntity<ErrorResponse> handleTokenValidation(TokenValidationException ex,
+                                                               HttpServletRequest request) {
+        return build(HttpStatus.UNAUTHORIZED, ex.getMessage(), request);
     }
 
     @ExceptionHandler(UserValidationException.class)

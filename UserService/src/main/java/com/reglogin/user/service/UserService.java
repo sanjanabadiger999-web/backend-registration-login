@@ -1,11 +1,11 @@
 package com.reglogin.user.service;
 
+import com.reglogin.auth.repository.UserRepository;
 import com.reglogin.user.dto.SignupRequest;
 import com.reglogin.user.dto.SignupResponse;
 import com.reglogin.user.entity.User;
 import com.reglogin.user.exception.UserAlreadyExistsException;
 import com.reglogin.user.exception.UserValidationException;
-import com.reglogin.user.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,8 +1,6 @@
 # ============================================================================
-# run-all.ps1 - Builds (if needed) and starts the three reglogin applications.
-#   FrontendRegLogin       -> http://localhost:8080  (Signup / Login / Home)
-#   UserService            -> http://localhost:8081  (POST /api/reg)
-#   AuthenticationService  -> http://localhost:8082  (login/me/logout + JWT cookie)
+# run-all.ps1 - Builds (if needed) and starts the reglogin backend.
+#   UserService            -> http://localhost:8080  (registration + login/me/logout + JWT cookie)
 #
 # Run:  powershell -ExecutionPolicy Bypass -File .\run-all.ps1
 # Logs are written to the `logs/` folder.
@@ -19,9 +17,7 @@ function Get-JarPath([string]$proj, [string]$artifact) {
 }
 
 $apps = @(
-    @{ Name = 'FrontendRegLogin';         Port = 8080; Artifact = 'frontend-reg-login-1.0.0'          },
-    @{ Name = 'UserService';              Port = 8081; Artifact = 'user-service-1.0.0'                 },
-    @{ Name = 'AuthenticationService';    Port = 8082; Artifact = 'authentication-service-1.0.0'       }
+    @{ Name = 'UserService'; Port = 8080; Artifact = 'user-service-1.0.0' }
 )
 
 $started = @()
@@ -56,7 +52,7 @@ foreach ($app in $apps) {
 }
 
 Write-Host ""
-Write-Host "Open http://localhost:8080 in your browser to use the app." -ForegroundColor Cyan
+Write-Host "Backend running on http://localhost:8080" -ForegroundColor Cyan
 Write-Host "Logs are in: $logDir" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Started: $($started -join ', ')"

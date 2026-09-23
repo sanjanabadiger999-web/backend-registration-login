@@ -12,12 +12,26 @@ dist/
 .env.*.local
 !.env.example
 
-# ---- IDE / OS ----
+# ---- Frontend lives in its own repository (frontend-registration-login).
+#      Kept locally, but not tracked in this backend repo. ----
+/Frontend/
+/FrontendRegLogin/
+
+# ---- TLS / credential files (Aiven CA cert, keys, secrets) ----
+*.pem
+*.crt
+*.key
+*.p12
+!**/pki/*.pem
+
+# ---- IDE / OS / runtime ----
 .idea/
 .vscode/
 *.iml
 .DS_Store
 *.log
+hs_err_pid*
+logs/
 
 # Render blueprint may contain placeholder values only
 # (do not put real DB passwords or JWT secrets in this file).

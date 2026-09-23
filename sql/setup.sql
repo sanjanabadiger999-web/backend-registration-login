@@ -11,11 +11,10 @@
 
 CREATE DATABASE IF NOT EXISTS reglogin CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- Dedicated application user.
+-- Dedicated application user (local dev only - credentials are stored IN PLAIN TEXT here).
+-- CHANGE BOTH USERNAME AND PASSWORD before any shared/production use.
 CREATE USER IF NOT EXISTS 'reglogin'@'localhost' IDENTIFIED BY 'frontend';
-CREATE USER IF NOT EXISTS 'reglogin'@'%' IDENTIFIED BY 'frontend';
 GRANT ALL PRIVILEGES ON reglogin.* TO 'reglogin'@'localhost';
-GRANT ALL PRIVILEGES ON reglogin.* TO 'reglogin'@'%';
 FLUSH PRIVILEGES;
 
 USE reglogin;

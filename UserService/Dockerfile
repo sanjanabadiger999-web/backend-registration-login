@@ -7,5 +7,5 @@ RUN mvn -B -q -DskipTests package
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /app/target/user-service-1.0.0.jar app.jar
-EXPOSE 8081
-ENTRYPOINT ["java", "-jar", "app.jar"]
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar", "--spring.profiles.active=prod"]
